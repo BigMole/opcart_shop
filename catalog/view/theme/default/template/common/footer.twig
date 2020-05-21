@@ -1,0 +1,127 @@
+
+<div id="footer">
+  <div class="footer">
+    <div class="first">
+      <a href="">安保運輸</a>
+      <div class="seconddiv">
+        <a href="help.php?id=151" target="_self">保險箱&金庫</a>
+        <a href="help.php?id=150" target="_self">存儲費用</a>
+      </div>
+    </div>
+    <div class="first"><a href="">教育中心</a>
+      <div class="seconddiv">
+        <a href="help.php?id=154" target="_self">黃金常識</a>
+        <a href="help.php?id=153" target="_self">投資指南</a>
+        <a href="help.php?id=152" target="_self">LBMA</a>
+      </div>
+    </div>
+    <div class="first"><a href="">客戶服務</a>
+      <div class="seconddiv">
+        <a href="help.php?id=167" target="_self">賣給我們</a>
+        <a href="help.php?id=165" target="_self">如何購買</a>
+        <a href="help.php?id=148" target="_self">運費保費</a>
+        <a href="help.php?id=147" target="_self">售價說明</a>
+        <a href="help.php?id=146" target="_self">聯繫我們</a>
+      </div>
+    </div>
+    <div class="first"><a href="">關於我們</a>
+      <div class="seconddiv">
+        <a href="help.php?id=144" target="_self">關於</a>
+        <a href="help.php?id=143" target="_self">社會責任</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="dibu">
+  <div class="dibu">
+    © 2019 APMEX, Inc. All Rights Reserved.
+  </div>
+</div>
+
+{#<footer>#}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      {% if informations %}#}
+{#      <div class="col-sm-3 col-xs-6">#}
+{#        <h5>{{ text_information }}</h5>#}
+{#        <ul class="list-unstyled">#}
+{#         {% for information in informations %}#}
+{#          <li><a href="{{ information.href }}">{{ information.title }}</a></li>#}
+{#          {% endfor %}#}
+{#        </ul>#}
+{#      </div>#}
+{#      {% endif %}#}
+{#      <div class="col-sm-3 col-xs-6">#}
+{#        <h5>{{ text_service }}</h5>#}
+{#        <ul class="list-unstyled">#}
+{#          <li><a href="{{ contact }}">{{ text_contact }}</a></li>#}
+{#          <li><a href="{{ return }}">{{ text_return }}</a></li>#}
+{#          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+{#      <div class="visible-xs col-xs-12"></div>#}
+{#      <div class="col-sm-3 col-xs-6">#}
+{#        <h5>{{ text_extra }}</h5>#}
+{#        <ul class="list-unstyled">#}
+{#          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>#}
+{#          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>#}
+{#          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>#}
+{#          <li><a href="{{ special }}">{{ text_special }}</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+{#      <div class="col-sm-3 col-xs-6">#}
+{#        <h5>{{ text_account }}</h5>#}
+{#        <ul class="list-unstyled">#}
+{#          <li><a href="{{ account }}">{{ text_account }}</a></li>#}
+{#          <li><a href="{{ order }}">{{ text_order }}</a></li>#}
+{#          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>#}
+{#          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <p class="footer-bottom">{{ powered }}</p>#}
+{#  <div class="fixed-shortcut-wrapper">#}
+{#    <div class="shortcut hidden-sm hidden-xs">#}
+{#      <a href="{{ helper.url.link("checkout/cart") }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>#}
+{#      <a href="{{ account }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>#}
+{#      <a href="{{ wishlist }}"><i class="fa fa-heart" aria-hidden="true"></i></a>#}
+{#      <a href="#" class="scroll-top go-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a>#}
+{#    </div>#}
+{#  </div>#}
+{#</footer>#}
+{#{% for script in scripts %}#}
+{#<script src="{{ script }}" type="text/javascript"></script>#}
+{#{% endfor %}#}
+
+{#<script type="text/javascript">#}
+{#  var showAlert = function(type, content) {#}
+{#    if (type == 'cart') {#}
+{#      redirectButtonText = '{{ button_checkout }}';#}
+{#      redirectButtonLocation = '{{ helper.url.link("checkout/cart") }}';#}
+{#    } else if (type == 'wishlist') {#}
+{#      redirectButtonText = '{{ button_wishlist }}';#}
+{#      redirectButtonLocation = '{{ wishlist }}';#}
+{#    } else if (type == 'compare') {#}
+{#      redirectButtonText = '{{ button_compare }}';#}
+{#      redirectButtonLocation = '{{ helper.url.link("product/compare") }}';#}
+{#    }#}
+
+{#    layer.open({#}
+{#      title: '{{ text_layer_popup_title }}',#}
+{#      skin: 'layer-alert',#}
+{#      shadeClose: true,#}
+{#      content: content,#}
+{#      btn: [redirectButtonText, '{{ button_continue_shopping }}'],#}
+{#      yes: function() {#}
+{#        location = redirectButtonLocation;#}
+{#      }#}
+{#    });#}
+{#  }#}
+{#</script>#}
+
+
+{{ helper.debug_bar.render }}
+</body></html>

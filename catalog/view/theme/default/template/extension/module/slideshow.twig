@@ -1,0 +1,35 @@
+<div class="flexslider">
+  <ul class="slides">
+    <li><picture><source media="(max-width: 767px)" srcset="public/images/banner.jpg"><img src="public/images/banner.jpg" alt="" class="responsive-image"></picture></li>
+    <li><picture><source media="(max-width: 767px)" srcset="public/images/banner.jpg"><img src="public/images/banner.jpg" alt="" class="responsive-image"></picture></li>
+    <li><picture><source media="(max-width: 767px)" srcset="public/images/banner.jpg"><img src="public/images/banner.jpg" alt="" class="responsive-image"></picture></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $(".flexslider").flexslider({
+      animation: "fade",
+      slideDirection: "horizontal",
+      slideshow: true,
+      slideshowSpeed: 7000,
+      animationDuration: 600,
+      touch: true
+    });
+  });
+</script>
+
+
+{#<div class="swiper-viewport module-slideshow">#}
+{#  <div id="slideshow{{ module }}_swiper" class="swiper-container">#}
+{#    <div class="swiper-wrapper"> {% for banner in banners %}#}
+{#      <div class="swiper-slide text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>#}
+{#      {% endfor %} </div>#}
+{#  </div>#}
+{#  <div class="swiper-pagination slideshow-pagination-{{ module }}"></div>#}
+{#  <div class="swiper-pager">#}
+{#    <div class="swiper-button-next slideshow-next{{ module }}"></div>#}
+{#    <div class="swiper-button-prev slideshow-prev{{ module }}"></div>#}
+{#  </div>#}
+{#</div>#}
+

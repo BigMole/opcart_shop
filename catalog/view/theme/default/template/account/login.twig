@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8" />
+<title> Login  </title>
+<link href="public/css/base.css" rel="stylesheet">
+<link href="public/css/main.css" rel="stylesheet">
+<link href="public/css/owl.carousel.css" rel="stylesheet">
+<link href="public/css/owl.theme.css" rel="stylesheet">
+<script src="public/js/jquery-1.9.1.min.js"></script>
+<script src="public/js/owl.carousel.js"></script>
+<script type="text/javascript" src="public/js/jquery.SuperSlide.2.1.1.js"></script>
+<body>
+<link type="text/css" rel="stylesheet" href="public/css/passport.css" />
+<link type="text/css" rel="stylesheet" href="public/css/new0304.css" />
+<div class="logo-r">
+  <div class="logo-info-r"><a href="./" class="logo"></a><span class="findpw">欢迎登录</span></div>
+</div>
+<div class="">
+  <div class="login-wrap" id="entry">
+    <div class="login-banner">
+      <div class="w990 position-relative">
+        <a class="banner-bg" href="#" target="_blank"></a>
+        <div class="login-form">
+          <form action="{{ action }}" method="post" enctype="multipart/form-data">
+            <div class="login-tit">{{ text_login }}<a class="regist-link main-color" href="{{ register }}">{{ text_register }} <i>&gt;</i></a></div>
+            <div class="form">
+
+              <div class="msg-wrap">
+                {% if error_warning %}
+                <div class="msg-error"  style="visibility: visible;">
+                  <i class="msg-icon"></i><span id="msg-error-text" class="msg-error-text">{{ entry_email }} {{ entry_password }} </span>
+                </div>
+                {% endif %}
+              </div>
+
+              <div class="item item-name">
+                <i class="icon"></i>
+                <input type="text" id="username" name="email" value="{{ email }}" placeholder="{{ entry_email }}" class="text" tabindex="1"/>
+              </div>
+              <div class="item item-password">
+                <i class="icon"></i>
+                <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}" id="password" class="text" tabindex="2" />
+              </div>
+              <div class="safety" id="autoentry">
+                <label for="remember" class="mar-b"><input type="checkbox" value="1" name="remember" id="remember" class="checkbox"/>请保存我这次的登录信息</label>
+                <a class="forget_password fr" href="{{ forgotten }}">{{ text_forgotten }}</a>
+              </div>
+              <div class="login-btn">
+                {% if redirect %}
+                  <input type="hidden" name="redirect" value="{{ redirect }}" />
+                {% endif %}
+                <input type="hidden" name="act" value="act_login" />
+                <input type="submit" name="submit" class="btn-img btn-entry" id="loginsubmit" value="{{ button_login }}" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

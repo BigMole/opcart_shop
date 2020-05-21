@@ -1,0 +1,29 @@
+{#<h3 class="widget-title"><span>{{ heading_title }} </span></h3>#}
+{#<div class="row">#}
+{#  <div class="product-wrapper">#}
+{#    {% for product in products %}#}
+{#    <div class="product-layout col-lg-3 col-md-3 col-sm-4 col-xs-6">#}
+{#      {{ include(helper.template('_partial/product/product_single')) }}#}
+{#    </div>#}
+{#    {% endfor %}#}
+{#  </div>#}
+{#</div>#}
+<div class="index03">
+  <div class="tt">特殊黃金產品</div>
+  <div class="bb">
+    {% for product in products %}
+    <a href="{{ product.href }}" class="item"><img src="{{ product.thumb }}" /><div class="t">{{ product.name }}</div><div class="b">{{ product.special }} </div></a>
+    {% endfor %}
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<div class="index04">
+  <img src="public/images/index04.jpg" />
+</div>
+<div class="index05">
+  <a href="" ><img src="public/images/index0501.jpg" /></a>
+  <a href="" ><img src="public/images/index0502.jpg" /></a>
+  <a href="" ><img src="public/images/index0503.jpg" /></a>
+  <a href="" ><img src="public/images/index0504.jpg" /></a>
+</div>

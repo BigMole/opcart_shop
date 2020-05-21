@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="Keywords" content="MAGNATE" />
+  <meta name="Description" content="MAGNATE" />
+  <title> 注册 </title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link href="public/css/base.css" rel="stylesheet">
+  <link href="public/css/main.css" rel="stylesheet">
+  <link href="public/css/owl.carousel.css" rel="stylesheet">
+  <link href="public/css/owl.theme.css" rel="stylesheet">
+  <script src="public/js/jquery-1.9.1.min.js"></script>
+  <script src="public/js/owl.carousel.js"></script>
+  <script type="text/javascript" src="public/js/jquery.SuperSlide.2.1.1.js"></script>
+<body>
+
+<link type="text/css" rel="stylesheet" href="public/css/passport.css" />
+<link type="text/css" rel="stylesheet" href="public/css/new0304.css" />
+
+<div class="logo-r">
+  <div class="logo-info-r"> <a href="./" class="logo"></a> <span class="findpw">欢迎注册</span>  </div>
+</div>
+<div class="w990">
+
+  <div id="regist">
+    <div class="register-con">
+      <div class="box-pic-reg">
+        <div id="owl-demo03" class="owl-carousel">
+          <div class="item"><img src="public/images/zhuce.jpg" width="100%"></div>
+          <div class="item"><img src="public/images/zhuce.jpg" width="100%"></div>
+          <div class="item"><img src="public/images/zhuce.jpg" width="100%"></div>
+        </div>
+      </div>
+      <script>
+        $('#owl-demo03').owlCarousel({
+          items: 1,
+          pagination: true,
+          rewindNav : true,
+          autoPlay : 5000,
+          stopOnHover:false,
+          touchDrag:false,
+          mouseDrag:false,
+          navigation:false,
+          navigationText : [" "," "],
+        });
+      </script>
+      <div class="uc-box-reg">
+          <ul class="register-tab">
+            <span style="color: #f00;">{{ error_warning }}</span>
+            <li class="have-account fr">已有账号！<a href="{{ helper.url.link('account/login') }}">登录</a></li>
+          </ul>
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <input type="hidden" name="type" value="email" />
+          <div class="form">
+            <input type="hidden" name="register_type" value="email" />
+            <div class="item">
+              <input name="email" type="text" id="email" placeholder="email" onblur="checkEmail(this)" class="text email" />
+              <i class="i-email"></i>
+              <div> <span class="label" id="email_notice"></span> </div>
+            </div>
+            <div id="o-password">
+              <div class="item">
+                <input name="password" type="password" id="password" placeholder="密码" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)" class="text" />
+                <i class="i-pass"></i>
+                <div id="pwd_notice" style="display: none;"> <span class="label" id="password_notice"></span> </div>
+                <div id="pwd_intensity">
+                  <span class="label">
+                          <table width="295" height="25px" border="0" cellspacing="0" cellpadding="0" style="padding: 0px 0px 10px;">
+                              <tr align="center">
+                                  <td width="33%" id="pwd_lower">弱</td>
+                                  <td width="33%" id="pwd_middle">中</td>
+                                  <td width="33%" id="pwd_high">强</td>
+                              </tr>
+                          </table>
+                  </span>
+                </div>
+              </div>
+              <div class="item">
+                <input type="password" id="conform_password" name="confirm" class="text" placeholder="确认密码" onblur="check_conform_password(this.value);" autocomplete="off" />
+                <i class="i-pass"></i>
+                <div> <span class="label" id="conform_password_notice"></span> </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input name="firstname" id="extend_field5" type="text" class="text" placeholder="手机" />
+              <i class="i-phone"></i>
+              <div> <span class="label" id="extend_field5i"></span> </div>
+            </div>
+
+            <div class="item">
+              <input name="wxname" id="extend_field8" type="text" class="text" placeholder="微信/Telegram" />
+              <i class="i-phone"></i>
+              <div> <span class="label" id="extend_field8i"></span> </div>
+            </div>
+
+            <div class="item" >
+              <input id="email_code" class="text text-te fl" type="text" placeholder="邮箱验证码" name="email_code" maxlength="6">
+              <i class="i-email"></i>
+              <input id="zemail" class="zemail" type="button" value="获取邮箱验证码 ">
+              <div style="clear:both"> <span id="extend_field5i" class="label"></span> </div>
+            </div>
+
+            <div class="safety">
+              <input name="agree" type="checkbox" value="1" checked="checked" class="checkbox" />
+              <label for="remember" class="mar-b">我已看过并接受《<a href="article.php?cat_id=-1" style="color:blue" target="_blank">用户协议</a>》</label>
+            </div>
+            <div class="item">
+              <input name="act" type="hidden" value="register">
+              <input type="hidden" name="back_act" value="user.php" />
+              <input type="submit" id="btn_submit" name="Submit" class="btn-img btn-regist" value="立即注册" />
+            </div>
+          </div>
+        </form>
+        <!--[if !ie]>form end<![endif]-->
+      </div>
+    </div>
+  </div>
+
+  <div class="blank"></div>
+</div>
+
+{{ footer }}

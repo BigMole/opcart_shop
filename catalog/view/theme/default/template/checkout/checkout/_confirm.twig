@@ -1,0 +1,90 @@
+
+<div class="t">产品列表</div>
+<div class="titlediv">
+  <div class="titlelist">产品</div>
+  <div class="titlelist">价格</div>
+  <div class="titlelist">数量</div>
+  <div class="titlelist">总额</div>
+</div>
+<div class="prodiv">
+  {% for product in products %}
+  <div class="prodivlist">
+    <div class="prodivlist_l"><div class="img"><img src="{{ product.image }}" /></div><p>{{ product.name }}</p></div>
+    <div class="prodivlist_l">{{ product.price }}</div>
+    <div class="prodivlist_l">{{ product.quantity }}</div>
+    <div class="prodivlist_l">{{ product.total }}</div>
+  </div>
+  {% endfor %}
+</div>
+<div class="typediv">
+  <p>配送方式：</p>
+  <div class="typelist on"><img src="public/images/icon01.png" /><span>快递物流</span></div>
+  <div class="typelist"><img src="public/images/icon02.png" /><span>金库存储</span></div>
+  <div class="typelist"><img src="public/images/icon03.png" /><span>自行提取</span></div>
+</div>
+<div class="submitdiv">
+  {% for total in totals %}
+    {{ total.title }}:<span>{{ total.text }}</span>
+  {% endfor %}
+  <a class="submit"   onclick="confromorder()" >提 交</a>
+</div>
+
+
+{#<div class="checkout-section" id="cart-section">#}
+{#  <h2>{{ text_checkout_cart }}</h2>#}
+{#  {% if redirect %}#}
+{#    <script type="text/javascript"><!--#}
+{#    location = '{{ redirect }}';#}
+{#    //--></script>#}
+{#  {% else %}#}
+{#    <div class="table-responsive">#}
+{#      <table class="table table-bordered table-hover">#}
+{#        <thead>#}
+{#          <tr>#}
+{#            <td class="text-left"></td>#}
+{#            <td class="text-left">{{ column_name }}</td>#}
+{#            <td class="text-left">{{ column_model }}</td>#}
+{#            <td class="text-right">{{ column_quantity }}</td>#}
+{#            <td class="text-right">{{ column_price }}</td>#}
+{#            <td class="text-right">{{ column_total }}</td>#}
+{#          </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#          {% for product in products %}#}
+{#          <tr>#}
+{#            <td style="width:60px"><img src="{{ product.image }}" class="thumbnail"></td>#}
+{#            <td class="text-left">{{ product.name }}#}
+{#              {% for option in product.option %}#}
+{#              <br />#}
+{#              &nbsp;<small> - {{ option.name }}: {{ option.value }}</small>#}
+{#              {% endfor %}#}
+{#            </td>#}
+{#            <td class="text-left">{{ product.model }}</td>#}
+{#            <td class="text-right">{{ product.quantity }}</td>#}
+{#            <td class="text-right">{{ product.price }}</td>#}
+{#            <td class="text-right">{{ product.total }}</td>#}
+{#          </tr>#}
+{#          {% endfor %}#}
+{#          {% for voucher in vouchers %}#}
+{#          <tr>#}
+{#            <td></td>#}
+{#            <td class="text-left">{{ voucher.description }}</td>#}
+{#            <td class="text-left"></td>#}
+{#            <td class="text-right">1</td>#}
+{#            <td class="text-right">{{ voucher.amount }}</td>#}
+{#            <td class="text-right">{{ voucher.amount }}</td>#}
+{#          </tr>#}
+{#          {% endfor %}#}
+{#        </tbody>#}
+{#        <tfoot>#}
+{#          {% for total in totals %}#}
+{#          <tr>#}
+{#            <td colspan="5" class="text-right"><strong>{{ total.title }}:</strong></td>#}
+{#            <td class="text-right">{{ total.text }}</td>#}
+{#          </tr>#}
+{#          {% endfor %}#}
+{#        </tfoot>#}
+{#      </table>#}
+{#    </div>#}
+{#  {% endif %}#}
+{#</div>#}

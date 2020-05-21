@@ -1,0 +1,9 @@
+<div class="checkout-section" id="agree-section">
+  {% if text_payment_method %}
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="terms" value="1" {{ terms ? 'checked' }} /> <span>{{ text_payment_method }}</span>
+    </label>
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,111 @@
+{% if categories %}
+
+  <div id="menu">
+    <div class="menu">
+      <div class="first"><a href="">購買金條</a>
+        <div class="seconddiv">
+          <a class="childtab" href="">ARGOR-HERAEUS Gold Bar</a>
+          <a class="childtab" href="">PMAP Gold Bar</a>
+          <a class="childtab" href="">Valcambi Gold Bar</a>
+          <a class="childtab on" href="">Metalor Gold Bar</a>
+        </div>
+      </div>
+      <div class="first"><a href="">安保運輸</a>
+        <div class="seconddiv">
+          <a href="" target="_self">保險箱&金庫</a>
+          <a href="" target="_self">存儲費用</a>
+        </div>
+      </div>
+      <div class="first"><a href="">教育中心</a>
+        <div class="seconddiv">
+          <a href="" target="_self">黃金常識</a>
+          <a href="" target="_self">投資指南</a>
+          <a href="" target="_self">LBMA</a>
+        </div>
+      </div>
+      <div class="first"><a href="">客戶服務</a>
+        <div class="seconddiv">
+          <a href="" target="_self">賣給我們</a>
+          <a href="" target="_self">如何購買</a>
+          <a href="" target="_self">運費保費</a>
+          <a href="" target="_self">售價說明</a>
+          <a href="" target="_self">聯繫我們</a>
+        </div>
+      </div>
+      <div class="first"><a href="">關於我們</a>
+        <div class="seconddiv">
+          <a href="" target="_self">關於</a>
+          <a href="" target="_self">社會責任</a>
+        </div>
+      </div>
+      <div class="first"><a href="">在線充值</a></div>
+      <div class="cart">
+        <a href="javascript:;"><img src="public/images/0512/cart.png" />我的购物车：<span>0件</span/></a>
+        <div class="cart_in">
+          <a href="" class="prolist">
+            <img src="public/images/index0301.jpg" />
+            <div class="text">
+              <div class="t">NEW Fortuna Gold Rectan gularIngot - 1 oz</div>
+              <div class="b">$89.00<span> x1</span></div>
+            </div>
+            <div class="del"><img src="public/images/0512/delete.png" /></div>
+          </a>
+          <div class="allprcie">
+            总价：<span>$89.00</span>
+          </div>
+          <a class="tocart" href="index.php?route=checkout/cart">查看购物车</a>
+          <a class="tosettlement" href="">进行结算</a>
+        </div>
+      </div>
+
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+  <div id="seconddivbg" style="display:none;"></div>
+  <script>
+    $(".first").hover(function(){
+      $(this).find(".seconddiv").show();
+      //$("#seconddivbg").show();
+    },function(){
+      $(this).find(".seconddiv").hide();
+      //$("#seconddivbg").hide();
+    });
+  </script>
+
+{#<nav id="menu" class="navbar">#}
+{#  <div class="container">#}
+{#      <div class="navbar-header visible-xs visible-sm">#}
+{#        <button type="button" class="btn btn-primary mobile-search"><i class="fa fa-search"></i></button>#}
+{#        <button type="button" class="btn btn-navbar mobile-nav-icon"><i class="fa fa-bars"></i></button>#}
+{#      </div>#}
+{#      <div class="side-menu">#}
+{#        <div class="side-inner">#}
+{#          <div id="search" class="input-group hidden-lg hidden-md">#}
+{#            <input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="form-control" />#}
+{#            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>#}
+{#          </div>#}
+{#          <div class="side-title hidden-lg hidden-md">{{ text_category }}</div>#}
+{#          <ul class="nav navbar-nav">#}
+{#            {% for category in categories %}#}
+{#            {% if category.children %}#}
+{#            <li class="dropdown">#}
+{#              <span class="toggle-button"><i class="fa fa-angle-down" aria-hidden="true"></i></span>#}
+{#              <a href="{{ category.href }}">{{ category.name }}</a>#}
+{#              <ul class="dropdown-menu">#}
+{#                {% for child in category.children %}#}
+{#                <li><a href="{{ child.href }}">{{ child.name }}</a></li>#}
+{#                {% endfor %}#}
+{#              </ul>#}
+{#            </li>#}
+{#            {% else %}#}
+{#            <li><a href="{{ category.href }}">{{ category.name }}</a></li>#}
+{#            {% endif %}#}
+{#            {% endfor %}#}
+{#          </ul>#}
+{#        </div>#}
+{#      </div>#}
+
+{#  </div>#}
+{#</nav>#}
+{% endif %}
+

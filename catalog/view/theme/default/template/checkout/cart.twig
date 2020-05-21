@@ -1,0 +1,160 @@
+{{ header }}
+
+
+<div class="cartdiv">
+  <div class="cartdivt">你的购物车</div>
+  <div class="cartlist01">
+    <div class="cartlist01_01">产品</div>
+    <div class="cartlist01_02">单价</div>
+    <div class="cartlist01_03">数量</div>
+    <div class="cartlist01_04">小计</div>
+  </div>
+
+  {% for product in products %}
+  <div class="cartlist02">
+      <div class="cartlist01_01">
+        {% if product.thumb %}
+        <img src="{{ product.thumb }}" />
+        {% endif %}
+          <div class="text">
+            <div class="t"><span>商品名称：</span> {{ product.name }} </div>
+            <a href="" class="b">移除</a>
+          </div>
+      </div>
+      <div class="cartlist01_02">{{ product.price }}</div>
+      <div class="cartlist01_03">
+        <a href="javascript:;"><img src="public/images/0512/reduce.jpg" /></a>
+        <input class="num" type="text" value="1" />
+        <a href="javascript:;"><img src="public/images/0512/add.jpg" /></a>
+      </div>
+      <div class="cartlist01_04">{{ product.total }}</div>
+  </div>
+  {% endfor %}
+
+
+  <div class="cartlist03">物流费用 <span>（物流费用需在下单后，去会员中心进行支付）</span><div class="rprice">$0.00</div></div>
+  {% for total in totals %}
+  <div class="cartlist03">{{ total.title }}<div class="rprice">{{ total.text }}</div></div>
+  {% endfor %}
+  <div class="cartlist03">配送方式<div class="rtext">物流配送</div></div>
+  <div class="cartlist03">仓储情况<div class="rtext">剩余89KG</div></div>
+  <div class="cartlist04">在订单中添加注释<textarea></textarea></div>
+  <div class="cartlist05">
+    <a href="" class="">继续购物</a>
+    <a href="index.php?route=checkout/checkout" class="">进行结算</a>
+  </div>
+</div>
+
+
+
+{#<div id="checkout-cart" class="container">#}
+{#  {{ include(helper.template('_partial/breadcrumb')) }}#}
+{#  {% if attention %}#}
+{#  <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ attention }}#}
+{#    <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#  </div>#}
+{#  {% endif %}#}
+{#  {% if success %}#}
+{#  <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}#}
+{#    <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#  </div>#}
+{#  {% endif %}#}
+{#  {% if error_warning %}#}
+{#  <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}#}
+{#    <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#  </div>#}
+{#  {% endif %}#}
+{#  <div class="row">{{ column_left }}#}
+{#    {% if column_left and column_right %}#}
+{#    {% set class = 'col-sm-6' %}#}
+{#    {% elseif column_left or column_right %}#}
+{#    {% set class = 'col-sm-9' %}#}
+{#    {% else %}#}
+{#    {% set class = 'col-sm-12' %}#}
+{#    {% endif %}#}
+{#    <div id="content" class="{{ class }}">{{ content_top }}#}
+{#      <h1>{{ heading_title }}#}
+{#        {% if weight %}#}
+{#        &nbsp;({{ weight }})#}
+{#        {% endif %} </h1>#}
+{#      <form action="{{ action }}" method="post" enctype="multipart/form-data">#}
+{#        <div class="table-responsive">#}
+{#          <table class="table">#}
+{#            <thead>#}
+{#              <tr>#}
+{#                <td class="text-center">{{ column_image }}</td>#}
+{#                <td class="text-left">{{ column_name }}</td>#}
+{#                <td class="text-left">{{ column_model }}</td>#}
+{#                <td class="text-left">{{ column_quantity }}</td>#}
+{#                <td class="text-right">{{ column_price }}</td>#}
+{#                <td class="text-right">{{ column_total }}</td>#}
+{#              </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% for product in products %}#}
+{#            <tr>#}
+{#              <td class="text-center">{% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a> {% endif %}</td>#}
+{#              <td class="text-left product-name">#}
+{#                <a class="name" href="{{ product.href }}">{{ product.name }}</a> {% if not product.stock %} <span class="text-danger">***</span> {% endif %}#}
+{#                {% if product.option %}#}
+{#                {% for option in product.option %} <br />#}
+{#                <small>{{ option.name }}: {{ option.value }}</small> {% endfor %}#}
+{#                {% endif %}#}
+{#                {% if product.reward %} <br />#}
+{#                <small>{{ product.reward }}</small> {% endif %}#}
+{#              <td class="text-left">{{ product.model }}</td>#}
+{#              <td class="text-left"><div class="input-group btn-block" style="min-width: 150px;">#}
+{#                  <input type="text" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="form-control" />#}
+{#                  <div class="input-group-btn">#}
+{#                  <button type="submit" data-toggle="tooltip" title="{{ button_update }}" class="btn btn-primary"><i class="fa fa-refresh"></i></button>#}
+{#                  <button type="button" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger" onclick="cart.remove('{{ product.cart_id }}');"><i class="fa fa-times-circle"></i></button>#}
+{#                  </div></div></td>#}
+{#              <td class="text-right">{{ product.price }}</td>#}
+{#              <td class="text-right">{{ product.total }}</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#            {% for voucher in vouchers %}#}
+{#            <tr>#}
+{#              <td></td>#}
+{#              <td class="text-left">{{ voucher.description }}</td>#}
+{#              <td class="text-left"></td>#}
+{#              <td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">#}
+{#                  <input type="text" name="" value="1" size="1" disabled="disabled" class="form-control" />#}
+{#                  <div class="input-group-btn">#}
+{#                  <button type="button" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger" onclick="voucher.remove('{{ voucher.key }}');"><i class="fa fa-times-circle"></i></button>#}
+{#                  </div></div></td>#}
+{#              <td class="text-right">{{ voucher.amount }}</td>#}
+{#              <td class="text-right">{{ voucher.amount }}</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#              </tbody>#}
+{#          </table>#}
+{#        </div>#}
+{#      </form>#}
+{#      <div class="row">#}
+{#      <div class="col-md-7 col-sm-6 col-xs-12">#}
+{#        {% if modules %}#}
+{#        <div class="panel-group" id="accordion">{% for module in modules %}#}
+{#          {{ module }}#}
+{#          {% endfor %} </div>#}
+{#        {% endif %}#}
+{#      </div>#}
+{#        <div class="col-md-5 col-sm-6 col-xs-12">#}
+{#          <table class="table table-bordered">#}
+{#            {% for total in totals %}#}
+{#            <tr>#}
+{#              <td class="text-right"><strong>{{ total.title }}</strong></td>#}
+{#              <td class="text-right">{{ total.text }}</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#          </table>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="buttons clearfix">#}
+{#        <div class="pull-left"><a href="{{ continue }}" class="btn btn-default">{{ button_shopping }}</a></div>#}
+{#        <div class="pull-right"><a href="{{ checkout }}" class="btn btn-primary">{{ button_checkout }}</a></div>#}
+{#      </div>#}
+{#      {{ content_bottom }}</div>#}
+{#    {{ column_right }}</div>#}
+{#</div>#}
+{{ footer }}
