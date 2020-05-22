@@ -9,17 +9,19 @@ class ControllerApiCharge  extends Controller
         'childMerchantId'=>'',   //测试用商户资料
         'terminalId' => '20003962' , //测试用商户资料
         'url'=>'https://testpay.sicpay.com/backSecure.do',//测试用地址
+
+        "notify_url"=>"http://localhost:88/index.php?route=api/charge/notifys&code=notifys",   //需要替换
+        "return_url"=>"http://localhost:88/index.php?route=api/charge/returns&code=returns",   //需要替换
+
     );
 
-
-
-
+    //充值
     public function index(){
 
         $post   = $this->request->post;
         $config = self::$config;
 
-        $post['order_no']='18';
+        $post['order_no']='22';
         $post['amount']='17';
         $post['product_name']='13';
 
@@ -33,8 +35,8 @@ class ControllerApiCharge  extends Controller
             "amount"=>$post['amount'],   //金额,自行替换
             "currency_type"=>"HKD",
             "sett_currency_type"=>"HKD",
-            "notify_url"=>"&code=notify",   //需要替换
-            "return_url"=>"&code=return",   //需要替换
+            "notify_url"=>self::$config['notify_url'],
+            "return_url"=>self::$config['return_url'],
             "product_name"=>$post['product_name'],
             "client_ip"=>"192.168.0.188",//self::getIp(),
             "child_merchant_no"=>self::$config['childMerchantId'],
@@ -56,7 +58,8 @@ class ControllerApiCharge  extends Controller
         if($result['resp_code']=='0000'){
 
             $tokenid = urlencode($result['token_id']);
-            $tourl = "https://gate.sicpay.com/frontSecure.do?version=2&token_id=".$tokenid."&bank_code=UPOP&access_type=0&order_no=".$post['order_no'];
+            $tourl = "https://testpay.sicpay.com/frontSecure.do?version=2&token_id=".$tokenid."&bank_code=UPOP&access_type=0&order_no=".$post['order_no'];
+//            $tourl = "https://gate.sicpay.com/frontSecure.do?version=2&token_id=".$tokenid."&bank_code=UPOP&access_type=0&order_no=".$post['order_no'];
 
            echo "<script>window.location.href='".$tourl."';</script>";
         }
@@ -69,6 +72,35 @@ class ControllerApiCharge  extends Controller
     }
 
 
+
+    public function notifys(){
+
+        $post=$this->request->post;
+        $post=json_encode($post );
+
+
+        $this->response->setOutput($post);
+
+    }
+
+
+    //充值结果通知
+    public function returns(){
+
+
+        $getData=$this->request->get;
+
+
+        $pay_sign = new PaySign();
+
+        //发送加密数据包
+        $result = $pay_sign->sendEncodeData01($getData, self::$config);
+
+        $result = json_encode($result);
+
+        $this->response->setOutput( $result);
+
+    }
 
 
 
@@ -151,6 +183,7 @@ class PaySign{
             return false;
         }
     }
+
     public function sendEncodeData01($result_json, $config){
 
         $private_rsa_key_path = $this->getPath() . $config['agencyId'] . '/' . $config['agencyId'].  '.pem';
@@ -164,7 +197,7 @@ class PaySign{
 
         //用商户私钥解密aes密钥（是由平台随机生成的）
 
-        $result_aes_key = $this->rsaDecode($result_json['encryptKey'], $private_rsa_key);
+        $result_aes_key = $this->rsaDecode($result_json['encryptKey']  , $private_rsa_key);
 
         //用aes密钥解密报文
         $decode_content = $this->aesDecode($result_json['encryptData'],$result_aes_key);
@@ -176,6 +209,26 @@ class PaySign{
             return false;
         }
     }
+
+
+    public function verifyEncode($encodeArr,$config){
+
+        //商户RSA私钥
+        $private_rsa_key_path = $this->getPath() . $config['agencyId'] . '/' . $config['agencyId'].  '.pem';
+
+
+        // var_dump($private_rsa_key_path);
+        $private_rsa_key = file_get_contents($private_rsa_key_path);
+        //我司平台RSA公钥
+        $public_rsa_key_path =  $this->getPath() . $config['agencyId'] . '/' . 'GHT_ROOT.pem';
+
+
+        //  var_dump($public_rsa_key_path);
+        $public_rsa_key = file_get_contents($public_rsa_key_path);
+
+
+    }
+
 
     private function aesEncode($data, $aes_key){
         $encrypt_data = openssl_encrypt($this->pad($data), "aes-128-ecb", $aes_key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
