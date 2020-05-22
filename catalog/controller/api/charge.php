@@ -4,7 +4,7 @@
 class ControllerApiCharge  extends Controller
 {
 
-    private $config=array(
+    private static $config=array(
         'agencyId'=>'549440189990001',   //测试用商户资料
         'childMerchantId'=>'',   //测试用商户资料
         'terminalId' => '20003962' , //测试用商户资料
@@ -16,13 +16,85 @@ class ControllerApiCharge  extends Controller
 
     public function index(){
 
-        $post = $this->request->post;
+        $post   = $this->request->post;
+        $config = self::$config;
+
+        $post['order_no']='18';
+        $post['amount']='17';
+        $post['product_name']='13';
+
+
+        $json = array(
+            "version"=>"2.0.0",
+            "terminal_no"=>self::$config['terminalId'],
+            "trade_code"=>"PAY",
+            "agencyId"=>self::$config['agencyId'],
+            "order_no"=>$post['order_no'],   //第三方订单号,自行替换
+            "amount"=>$post['amount'],   //金额,自行替换
+            "currency_type"=>"HKD",
+            "sett_currency_type"=>"HKD",
+            "notify_url"=>"&code=notify",   //需要替换
+            "return_url"=>"&code=return",   //需要替换
+            "product_name"=>$post['product_name'],
+            "client_ip"=>"192.168.0.188",//self::getIp(),
+            "child_merchant_no"=>self::$config['childMerchantId'],
+            "pay_timeout"=>'600',
+        );
+
+
+        $pay_sign = new PaySign();
+
+
+        //发送加密数据包
+        $result = $pay_sign->sendEncodeData($json, $config);
+
+
+
+
+        $result    = (array)json_decode($result, true);
+
+        if($result['resp_code']=='0000'){
+
+            $tokenid = urlencode($result['token_id']);
+            $tourl = "https://gate.sicpay.com/frontSecure.do?version=2&token_id=".$tokenid."&bank_code=UPOP&access_type=0&order_no=".$post['order_no'];
+
+           echo "<script>window.location.href='".$tourl."';</script>";
+        }
+        else{
+            $this->response->setOutput($result['resp_desc']);
+        }
+
 
 
     }
 
 
 
+
+
+    public static function getIp()
+    {
+        if ($_SERVER["HTTP_CLIENT_IP"] && strcasecmp($_SERVER["HTTP_CLIENT_IP"], "unknown")) {
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        } else {
+            if ($_SERVER["HTTP_X_FORWARDED_FOR"] && strcasecmp($_SERVER["HTTP_X_FORWARDED_FOR"], "unknown")) {
+                $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+            } else {
+                if ($_SERVER["REMOTE_ADDR"] && strcasecmp($_SERVER["REMOTE_ADDR"], "unknown")) {
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                } else {
+                    if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'],
+                            "unknown")
+                    ) {
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                    } else {
+                        $ip = "unknown";
+                    }
+                }
+            }
+        }
+        return ($ip);
+    }
 
 
 }
